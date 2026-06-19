@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import { connectDatabase } from './config/database';
 import {
   ActivityModel,
   LeaderboardModel,
@@ -10,7 +10,6 @@ import {
 
 const app = express();
 const port = Number(process.env.PORT) || 8000;
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
@@ -69,8 +68,7 @@ app.get('/api/workouts/', async (_req, res, next) => {
 
 async function startServer() {
   try {
-    await mongoose.connect(mongoUri);
-    console.log('MongoDB connected');
+    await connectDatabase();
 
     app.listen(port, () => {
       console.log(`Backend listening on port ${port}`);
