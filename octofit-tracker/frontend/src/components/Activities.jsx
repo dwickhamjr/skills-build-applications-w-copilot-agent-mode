@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection } from '../api'
+import { extractCollection } from '../api'
+
+const activitiesApiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : 'http://localhost:8000/api/activities/'
 
 function formatDate(value) {
   if (!value) {
@@ -20,7 +24,15 @@ function Activities() {
   useEffect(() => {
     let active = true
 
-    fetchCollection('activities')
+    fetch(activitiesApiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed for activities: ${response.status}`)
+        }
+
+        return response.json()
+      })
+      .then((payload) => extractCollection(payload, 'activities'))
       .then((records) => {
         if (active) {
           setActivities(records)

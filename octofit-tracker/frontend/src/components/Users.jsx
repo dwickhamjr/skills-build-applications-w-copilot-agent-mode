@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection } from '../api'
+import { extractCollection } from '../api'
+
+const usersApiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/'
 
 function Users() {
   const [users, setUsers] = useState([])
@@ -9,7 +13,15 @@ function Users() {
   useEffect(() => {
     let active = true
 
-    fetchCollection('users')
+    fetch(usersApiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed for users: ${response.status}`)
+        }
+
+        return response.json()
+      })
+      .then((payload) => extractCollection(payload, 'users'))
       .then((records) => {
         if (active) {
           setUsers(records)
