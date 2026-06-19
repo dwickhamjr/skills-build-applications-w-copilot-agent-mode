@@ -17,6 +17,29 @@ export const baseUrl = codespaceName
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  const allowedOrigins = [
+    'http://localhost:5173',
+    codespaceName ? `https://${codespaceName}-5173.app.github.dev` : undefined,
+  ].filter(Boolean);
+
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(204);
+    return;
+  }
+
+  next();
+});
+
 app.get('/api/health', (_req, res) => {
   res.json({ apiUrl: baseUrl, status: 'ok' });
 });
