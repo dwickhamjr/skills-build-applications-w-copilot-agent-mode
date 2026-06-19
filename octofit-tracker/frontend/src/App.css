@@ -1,0 +1,204 @@
+.app-shell {
+  min-height: 100svh;
+  padding: 28px;
+}
+
+.topbar {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.brand-lockup {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand-lockup img {
+  height: 64px;
+  object-fit: contain;
+  width: 64px;
+}
+
+.eyebrow {
+  color: #2f6f73;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.topbar h1,
+.section-heading h1 {
+  color: #172026;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.api-pill {
+  background: #ecf7f6;
+  border: 1px solid #b7ddda;
+  border-radius: 6px;
+  color: #17494d;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.app-nav {
+  background: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 10px;
+}
+
+.app-nav .nav-link {
+  color: #33424d;
+  font-weight: 700;
+}
+
+.app-nav .nav-link.active {
+  background: #246a73;
+  color: #ffffff;
+}
+
+.content-panel {
+  background: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  min-height: 560px;
+  padding: 24px;
+}
+
+.data-panel {
+  text-align: left;
+}
+
+.section-heading {
+  align-items: end;
+  border-bottom: 1px solid #d8dde6;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+
+.status-text {
+  background: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  margin: 0;
+  padding: 16px;
+  text-align: left;
+}
+
+.table {
+  --bs-table-hover-bg: #f2f8f7;
+  margin-bottom: 0;
+}
+
+.table thead th {
+  color: #44525d;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.team-card,
+.workout-card,
+.leaderboard-row {
+  background: #f9fbfb;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  height: 100%;
+  padding: 18px;
+}
+
+.team-card h2,
+.workout-card h2,
+.leaderboard-row h2 {
+  color: #172026;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+}
+
+.metric {
+  color: #246a73;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 14px 0 8px;
+}
+
+.members {
+  color: #5b6872;
+}
+
+.leaderboard-list {
+  display: grid;
+  gap: 12px;
+}
+
+.leaderboard-row {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 72px 1fr auto;
+}
+
+.rank {
+  background: #dff1ef;
+  border-radius: 6px;
+  color: #17494d;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  padding: 8px;
+}
+
+.workout-card ul {
+  margin: 14px 0 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .topbar,
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .brand-lockup {
+    align-items: flex-start;
+  }
+
+  .content-panel {
+    padding: 16px;
+  }
+
+  .leaderboard-row {
+    grid-template-columns: 1fr;
+  }
+}
